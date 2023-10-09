@@ -1,2 +1,4 @@
-# secure_programming
-copying tasks from uni
+## Information
+- Name: Dmytro Dundakov
+- Student code: 223666IVSB
+- Uni-id: dmdund
