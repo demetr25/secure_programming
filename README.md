@@ -1,4 +1,2 @@
 ## Information
-- Name: Dmytro Dundakov
-- Student code: 223666IVSB
-- Uni-id: dmdund
+I just copy repository with uni exercises :)
