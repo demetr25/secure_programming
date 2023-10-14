@@ -1,12 +1,12 @@
-## HW01
+## HW02
 
-#### **** Deadline 2023-10-01 23:59:59 ****
+#### **** Deadline 2023-10-15 23:59:59 ****
 
-Implement Cesar and Vigenere encrypt and decrypt.
-Support UTF-8 input and output.
-Output encrypted bytestream with Base64 encoding.
+Implement Diffie-Hellman algorithm. Do not use any crypto helper libraries.
 
-Ask user what he/she wants to do, be in loop until ctrl-c is pressed.
-Validate all inputs!!!
+Implement prime number multiplication result factorization - ie find out p1 and p2 just by having the
+result of p1 * p2.
 
-### done
+Limit your work within positive LONG bits (64).
+
+### done (seems like)
