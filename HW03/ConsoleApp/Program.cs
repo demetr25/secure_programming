@@ -1,63 +1,25 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Numerics;
+using ConsoleApp;
 
-Console.WriteLine("Hello, RSA!");
-
-// TODO: find 2 primes...
-long p = 7919; // 7919
-long q = 6841; // 6841
-
-var n = p*q;
-var m = (p-1)*(q-1);
-
-Console.WriteLine($"p: {p}");
-Console.WriteLine($"q: {q}");
-Console.WriteLine($"n: {n}");
-Console.WriteLine($"m: {m}");
-long e = 0;
-for (e = 2; e < m; e++)
+var userChoice = "";
+do
 {
-    if (Gcd(e, m) == 1) break;
-}
-
-Console.WriteLine($"Coprime e to the m: {e}");
-
-long d = FindD(m, e);
-
-Console.WriteLine($"d: {d}");
-
-Console.WriteLine($"Private key: {n} {e}");
-Console.WriteLine($"Public key: {n} {d}");
-
-long plainInput = 6;
-
-BigInteger cipher = BigInteger.ModPow(plainInput, e, n);
-BigInteger plainOutput = BigInteger.ModPow(cipher, d, n);
-
-Console.WriteLine($"plain: {plainOutput}");
-
-return;
-
-long FindD(long m, long e)
-{
-    for (int k = 0; k < long.MaxValue; k++)
+    Console.WriteLine("RSA encryption - RSA, Brute force decryption - BFD, eXit - X?");
+    userChoice = Console.ReadLine()?.ToUpper().Trim();
+    
+    switch (userChoice)
     {
-        if ((1 + k * m) % e == 0)
-        {
-            return (1 + k * m) / e;
-        }
+        case "RSA":
+            RSA.DoRSA();
+            break;
+        case "BFD":
+            BruteForce.DoBruteForce();
+            break;
+        case "X":
+            break;
+        default:
+            Console.WriteLine("Bad input!");
+            break;
     }
-
-    throw new ApplicationException("D is not found");
-}
-
-long Gcd(long a, long b)
-{
-    if (a == 0)
-    {
-        return b;
-    }
-
-    return Gcd(b % a, a);
-}
+} while (userChoice != "X");

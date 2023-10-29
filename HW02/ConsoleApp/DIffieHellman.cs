@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ConsoleApp;
+﻿namespace ConsoleApp;
 
 public class DiffieHellman
 {
@@ -42,27 +40,27 @@ public class DiffieHellman
         Console.WriteLine("Insert value of b (positive long)");
         b = AssignValue();
         
-        var x_sec = Pow(g, a)%p;
-        var y_sec = Pow(g, b)%p;
+        long xSec = Pow(g, a)%p;
+        long ySec = Pow(g, b)%p;
 
-        Console.WriteLine($"{x_sec}, {y_sec}");
+        Console.WriteLine($"{xSec}, {ySec}");
 
-        var x_shar = Pow(y_sec, a) % p;
-        var y_shar = Pow(x_sec, b) % p;
+        long xShar = Pow(ySec, a) % p;
+        long yShar = Pow(xSec, b) % p;
 
-        if (x_shar == y_shar)
+        if (xShar == yShar)
         {
-            Console.WriteLine($"true -> {x_shar}");
+            Console.WriteLine($"true -> {xShar}");
         }
         else
         {
-            Console.WriteLine($"false -> {x_shar} + {y_shar}");
+            Console.WriteLine($"false -> {xShar} + {yShar}");
         }
     }
     
-    private static BigInteger Pow(BigInteger num, long pow)
+    private static long Pow(long num, long pow)
     {
-        BigInteger result = 1;
+        long result = 1;
         for (int i = 1; i <= pow; ++i)
         {
             result *= num;
