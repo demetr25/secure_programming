@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ConsoleApp;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,15 +19,30 @@ namespace WebApp.Controllers
     public class CaesarsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public CaesarsController(ApplicationDbContext context)
+        public CaesarsController(ApplicationDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // GET: Caesars
         public async Task<IActionResult> Index()
         {
+            // var appUser = await _userManager.GetUserAsync(User);
+            // var idres = await _userManager.AddToRoleAsync(appUser, "admin");
+            // if (idres.Succeeded)
+            // {
+            //     Console.WriteLine("user is added to admin role");
+            // }
+            // else
+            // {
+            //     Console.WriteLine(idres.ToString());
+            // }
+            
             var res = await _context
                 .Caesars
                 .Where(c=> c.AppUserId == GetUserId())
@@ -212,7 +228,7 @@ namespace WebApp.Controllers
         
         private bool IsValidPlaintext(string plaintext)
         {
-            return !string.IsNullOrEmpty(plaintext) && plaintext.Length <= 255; // Example: Max length is 255 characters
+            return !string.IsNullOrEmpty(plaintext) && plaintext.Length <= 255;
         }
 
         private bool IsValidCypherKey(int cypherKey)

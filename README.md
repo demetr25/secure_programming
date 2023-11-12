@@ -1,3 +1,3 @@
 ## Information
 
-Tasks from university.
+Tasks from university
