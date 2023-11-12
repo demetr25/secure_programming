@@ -1,0 +1,25 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Username</td>
+    </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var claim in User.Claims)
+    {
+        if (claim.Type == ClaimTypes.Name)
+        {
+            <tr>
+                <td>@claim.Value</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
